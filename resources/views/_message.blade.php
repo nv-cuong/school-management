@@ -1,41 +1,41 @@
 @if (!empty(session('success')))
     <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>    
+        <i class="far fa-check-circle mr-1"></i>{{ session('success') }}
+    </div>
 @endif
 
 @if (!empty(session('error')))
     <div class="alert alert-error" role="alert">
         {{ session('error') }}
-    </div>    
+    </div>
 @endif
 
 @if (!empty(session('warning')))
     <div class="alert alert-warning" role="alert">
         {{ session('warning') }}
-    </div>    
+    </div>
 @endif
 
 @if (!empty(session('info')))
     <div class="alert alert-info" role="alert">
         {{ session('info') }}
-    </div>    
+    </div>
 @endif
 
 @if (!empty(session('secondary')))
     <div class="alert alert-secondary" role="alert">
         {{ session('secondary') }}
-    </div>    
+    </div>
 @endif
 
 @if (!empty(session('primary')))
     <div class="alert alert-primary" role="alert">
         {{ session('primary') }}
-    </div>    
+    </div>
 @endif
 
 @if (!empty(session('light')))
     <div class="alert alert-light" role="alert">
         {{ session('light') }}
-    </div>    
+    </div>
 @endif

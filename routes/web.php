@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,13 @@ Route::get('admin/admin/index', function () {
 });
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin.admin.dashboard');
+    Route::get('admin/admin/index', [AdminController::class, 'index'])->name('admin.admin.index');
+    Route::get('admin/admin/create', [AdminController::class, 'create'])->name('admin.admin.create');
+    Route::post('admin/admin/store', [AdminController::class, 'store'])->name('admin.admin.store');
+    Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit');
+    Route::put('admin/admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update');
+    Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.admin.delete');
 });
 
 Route::group(['middleware' => 'teacher'], function () {
