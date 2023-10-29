@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +43,24 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.admin.edit');
     Route::put('admin/admin/update/{id}', [AdminController::class, 'update'])->name('admin.admin.update');
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.admin.delete');
+
+    Route::prefix('admin/class')->name('admin.class.')->group(function (){
+        Route::get('/index', [ClassController::class, 'index'])->name('index');
+        Route::get('/create', [ClassController::class, 'create'])->name('create');
+        Route::post('/store', [ClassController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ClassController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ClassController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [ClassController::class, 'delete'])->name('delete');
+    });
+
+    Route::prefix('admin/subject')->name('admin.subject.')->group(function (){
+        Route::get('/index', [SubjectController::class, 'index'])->name('index');
+        Route::get('/create', [SubjectController::class, 'create'])->name('create');
+        Route::post('/store', [SubjectController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [SubjectController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [SubjectController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [SubjectController::class, 'delete'])->name('delete');
+    });
 });
 
 Route::group(['middleware' => 'teacher'], function () {
