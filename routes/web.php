@@ -61,6 +61,19 @@ Route::group(['middleware' => 'admin'], function () {
         Route::put('/update/{id}', [SubjectController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [SubjectController::class, 'delete'])->name('delete');
     });
+
+    Route::prefix('admin/assign_subject')->name('admin.assign_subject.')->group(function (){
+        Route::get('/index', [SubjectController::class, 'indexAssignSubject'])->name('index');
+        Route::get('/create', [SubjectController::class, 'createAssignSubject'])->name('create');
+        Route::post('/store', [SubjectController::class, 'storeAssignSubject'])->name('store');
+        Route::get('/edit/{id}', [SubjectController::class, 'editAssignSubject'])->name('edit');
+        Route::put('/update/{id}', [SubjectController::class, 'updateAssignSubject'])->name('update');
+        Route::get('/delete/{id}', [SubjectController::class, 'deleteAssignSubject'])->name('delete');
+        Route::get('/edit-single/{id}', [SubjectController::class, 'editSingleAssignSubject'])->name('edit_single');
+        Route::put('/update-single/{id}', [SubjectController::class, 'updateSingleAssignSubject'])->name('update_single');
+    });
+
+
 });
 
 Route::group(['middleware' => 'teacher'], function () {

@@ -18,4 +18,16 @@ class SubjectModel extends Model
     {
         return $this->belongsTo(User::class, 'who_created', 'id');
     }
+
+    static public function getSubject()
+    {
+        $subject = SubjectModel::select('subject.*')
+                ->join('users', 'users.id', 'subject.who_created')
+                ->where('subject.is_delete', '=', 1)
+                ->where('subject.status', '=', 1)
+                ->orderBy('subject.name', 'asc')
+                ->get();
+
+        return $subject;
+    }
 }

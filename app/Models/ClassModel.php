@@ -18,4 +18,16 @@ class ClassModel extends Model
     {
         return $this->belongsTo(User::class, 'who_created', 'id');
     }
+
+    static public function getClass()
+    {
+        $class = ClassModel::select('class.*')
+                ->join('users', 'users.id', 'class.who_created')
+                ->where('class.is_delete', '=', 1)
+                ->where('class.status', '=', 1)
+                ->orderBy('class.name', 'asc')
+                ->get();
+
+        return $class;
+    }
 }
